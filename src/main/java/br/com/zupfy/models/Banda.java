@@ -10,11 +10,11 @@ public class Banda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "nome_banda", length = 20)
+    @Column(name = "nome_banda", length = 20, unique = true)
     private String nome;
 
     @Column(name = "ano_nascimento")
-    private int nascimento;
+    private Integer nascimento;
 
     public Banda() {
     }
@@ -35,11 +35,11 @@ public class Banda {
         this.nome = nome;
     }
 
-    public int getNascimento() {
+    public Integer getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(int nascimento) {
+    public void setNascimento(Integer nascimento) {
         this.nascimento = nascimento;
     }
 }
