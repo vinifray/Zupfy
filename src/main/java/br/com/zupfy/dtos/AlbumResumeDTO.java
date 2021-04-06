@@ -6,15 +6,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AlbumMusicasDetailDTO {
-
+public class AlbumResumeDTO {
     private int id;
     private String nome;
     private int anoLancamento;
-    @JsonIgnoreProperties({"album", "banda"})
+    @JsonIgnoreProperties({"album", "banda", "duracao", "enderecoMusica"})
     private List<MusicaDTO> musicas;
 
-    public AlbumMusicasDetailDTO() {
+    public AlbumResumeDTO() {
     }
 
     public int getId() {
@@ -49,8 +48,8 @@ public class AlbumMusicasDetailDTO {
         this.musicas = musicas;
     }
 
-    public static AlbumMusicasDetailDTO converterModelParaDTO(Album album){
-        AlbumMusicasDetailDTO dto = new AlbumMusicasDetailDTO();
+    public static AlbumResumeDTO converterModelParaDTO(Album album){
+        AlbumResumeDTO dto = new AlbumResumeDTO();
 
         dto.setAnoLancamento(album.getAnoLancamento());
         dto.setNome(album.getNome());

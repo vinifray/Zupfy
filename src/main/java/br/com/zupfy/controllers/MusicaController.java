@@ -1,6 +1,8 @@
 package br.com.zupfy.controllers;
 
+import br.com.zupfy.dtos.AlbumResumeDTO;
 import br.com.zupfy.dtos.CadastroDeMusicaDTO;
+import br.com.zupfy.dtos.MusicaDTO;
 import br.com.zupfy.models.Musica;
 import br.com.zupfy.services.MusicaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,9 @@ public class MusicaController {
     }
 
     @GetMapping("{id}/")
-    public Musica pesquisarPorID(@PathVariable int id){
-        return musicaService.buscarPorID(id);
+    public MusicaDTO pesquisarPorID(@PathVariable int id){
+        Musica musica = musicaService.buscarPorID(id);
+        return MusicaDTO.converterModelParaComAlbumDTO(musica);
     }
 
 }

@@ -1,5 +1,6 @@
 package br.com.zupfy.dtos;
 
+import br.com.zupfy.models.Banda;
 import br.com.zupfy.models.Musica;
 
 import java.time.LocalTime;
@@ -10,8 +11,26 @@ public class MusicaDTO {
     private String nomeMusica;
     private LocalTime duracao;
     private String enderecoMusica;
+    private BandaDTO banda;
+    private AlbumResumeDTO album;
 
     public MusicaDTO() {
+    }
+
+    public BandaDTO getBanda() {
+        return banda;
+    }
+
+    public AlbumResumeDTO getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(AlbumResumeDTO album) {
+        this.album = album;
+    }
+
+    public void setBanda(BandaDTO banda) {
+        this.banda = banda;
     }
 
     public Integer getId() {
@@ -53,6 +72,14 @@ public class MusicaDTO {
         musicaDTO.setEnderecoMusica(musica.getEnderecoMusica());
         musicaDTO.setId(musica.getId());
         musicaDTO.setDuracao(musica.getDuracao());
+        musicaDTO.setBanda(BandaDTO.conveterModelParaDTO(musica.getBanda()));
+
+        return musicaDTO;
+    }
+
+    public static MusicaDTO converterModelParaComAlbumDTO(Musica musica){
+        MusicaDTO musicaDTO = converterModelParaDTO(musica);
+        musicaDTO.setAlbum(AlbumResumeDTO.converterModelParaDTO(musica.getAlbum()));
 
         return musicaDTO;
     }
