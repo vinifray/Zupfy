@@ -1,6 +1,7 @@
 package br.com.zupfy.dtos;
 
 import br.com.zupfy.models.Album;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ public class AlbumMusicasDetailDTO {
     private int id;
     private String nome;
     private int anoLancamento;
+    @JsonIgnoreProperties({"album"})
     private List<MusicaDTO> musicas;
 
     public AlbumMusicasDetailDTO() {
