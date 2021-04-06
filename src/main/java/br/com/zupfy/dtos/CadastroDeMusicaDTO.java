@@ -1,5 +1,6 @@
 package br.com.zupfy.dtos;
 
+import br.com.zupfy.models.Album;
 import br.com.zupfy.models.Banda;
 import br.com.zupfy.models.Musica;
 
@@ -15,11 +16,20 @@ public class CadastroDeMusicaDTO {
     private LocalTime duracao;
     @NotBlank
     private String enderecoMusica;
-
     @NotNull(message = "Id da Banda é Obrigatório")
     private int bandaID;
+    @NotNull
+    private AlbumDTO album;
 
     public CadastroDeMusicaDTO() {
+    }
+
+    public AlbumDTO getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(AlbumDTO album) {
+        this.album = album;
     }
 
     public String getNomeMusica() {
@@ -63,6 +73,8 @@ public class CadastroDeMusicaDTO {
         Banda banda = new Banda();
         banda.setId(this.bandaID);
         musica.setBanda(banda);
+
+        musica.setAlbum(this.album.converterDTOParaModel());
 
         return musica;
     }

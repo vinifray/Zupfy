@@ -18,7 +18,18 @@ public class Musica {
     @ManyToOne(optional = false)
     private Banda banda;
 
+    @ManyToOne
+    private Album album;
+
     public Musica() {
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 
     public Banda getBanda() {

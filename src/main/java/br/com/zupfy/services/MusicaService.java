@@ -1,5 +1,6 @@
 package br.com.zupfy.services;
 
+import br.com.zupfy.models.Album;
 import br.com.zupfy.models.Banda;
 import br.com.zupfy.models.Musica;
 import br.com.zupfy.repositories.MusicaRepository;
@@ -12,11 +13,16 @@ import java.util.Optional;
 @Service
 public class MusicaService {
 
-    @Autowired
     private MusicaRepository musicaRepository;
+    private BandaService bandaService;
+    private AlbumService albumService;
 
     @Autowired
-    private BandaService bandaService;
+    public MusicaService(MusicaRepository musicaRepository, BandaService bandaService, AlbumService albumService) {
+        this.musicaRepository = musicaRepository;
+        this.bandaService = bandaService;
+        this.albumService = albumService;
+    }
 
     public Musica salvarMuscia(Musica musica){
         Musica objetoMusica = musicaRepository.save(musica);
@@ -34,6 +40,11 @@ public class MusicaService {
     }
 
     public Musica salvarNovaMusica(Musica musica){
+        Album album = musica.getAlbum();
+
+        album = albumService.buscarOuCriarAlbum(album);
+        musica.setAlbum(album);
+
         Banda banda = bandaService.buscarBandaPeloId(musica.getBanda().getId());
         musica.setBanda(banda);
 
