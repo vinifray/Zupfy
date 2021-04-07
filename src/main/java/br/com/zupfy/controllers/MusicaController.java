@@ -20,9 +20,10 @@ public class MusicaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Musica registrarMusica(@RequestBody @Valid CadastroDeMusicaDTO musicaDTO){
+    public MusicaDTO registrarMusica(@RequestBody @Valid CadastroDeMusicaDTO musicaDTO){
         Musica musica = musicaDTO.converterDTOParaModel();
-        return musicaService.salvarNovaMusica(musica);
+        Musica objeto = musicaService.salvarNovaMusica(musica);
+        return MusicaDTO.converterModelParaComAlbumDTO(objeto);
     }
 
     @GetMapping("{id}/")
