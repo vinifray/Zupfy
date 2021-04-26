@@ -4,6 +4,8 @@ import br.com.zupfy.models.Banda;
 import br.com.zupfy.models.Musica;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MusicaDTO {
 
@@ -82,5 +84,15 @@ public class MusicaDTO {
         musicaDTO.setAlbum(AlbumResumeDTO.converterModelParaDTO(musica.getAlbum()));
 
         return musicaDTO;
+    }
+
+    public static Iterable<MusicaDTO> converterIterableModelParaDTO(Iterable<Musica> musicas){
+        List<MusicaDTO> musicaDTOS = new ArrayList<>();
+
+        for(Musica musica : musicas){
+            musicaDTOS.add(converterModelParaComAlbumDTO(musica));
+        }
+
+        return musicaDTOS;
     }
 }

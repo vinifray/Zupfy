@@ -50,4 +50,8 @@ public class MusicaService {
 
         return salvarMuscia(musica);
     }
+
+    public Iterable<Musica> pesquisarMusica(String nomeDoAlbum){
+        return musicaRepository.findAllByAlbumNome(nomeDoAlbum);
+    }
 }

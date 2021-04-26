@@ -32,4 +32,9 @@ public class MusicaController {
         return MusicaDTO.converterModelParaComAlbumDTO(musica);
     }
 
+    @GetMapping
+    public Iterable<MusicaDTO> pesquisarMusica(@RequestParam String nomeDoAlbum){
+        Iterable<Musica> musicas = musicaService.pesquisarMusica(nomeDoAlbum);
+        return MusicaDTO.converterIterableModelParaDTO(musicas);
+    }
 }
