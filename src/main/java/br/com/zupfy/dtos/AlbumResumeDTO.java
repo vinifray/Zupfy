@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class AlbumResumeDTO {
     private int id;
     private String nome;
-    private int anoLancamento;
+    private Integer anoLancamento;
     @JsonIgnoreProperties({"album", "banda", "duracao", "enderecoMusica"})
     private List<MusicaDTO> musicas;
 
@@ -50,16 +50,17 @@ public class AlbumResumeDTO {
 
     public static AlbumResumeDTO converterModelParaDTO(Album album){
         AlbumResumeDTO dto = new AlbumResumeDTO();
+        if(album != null) {
+            dto.setAnoLancamento(album.getAnoLancamento());
+            dto.setNome(album.getNome());
+            dto.setId(album.getId());
 
-        dto.setAnoLancamento(album.getAnoLancamento());
-        dto.setNome(album.getNome());
-        dto.setId(album.getId());
+            List<MusicaDTO> musicaDTOS = album.getMusicas().stream()
+                    .map(objeto -> MusicaDTO.converterModelParaDTO(objeto))
+                    .collect(Collectors.toList());
 
-        List<MusicaDTO> musicaDTOS = album.getMusicas().stream()
-                .map(objeto -> MusicaDTO.converterModelParaDTO(objeto))
-                .collect(Collectors.toList());
-
-        dto.setMusicas(musicaDTOS);
+            dto.setMusicas(musicaDTOS);
+        }
         return dto;
     }
 }

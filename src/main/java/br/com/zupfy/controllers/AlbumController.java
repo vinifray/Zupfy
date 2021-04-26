@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("albuns/")
+@RequestMapping("/albuns/")
 public class AlbumController {
     @Autowired
     private AlbumService albumService;

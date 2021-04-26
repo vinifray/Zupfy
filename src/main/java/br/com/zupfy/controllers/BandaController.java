@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("bandas/")
+@RequestMapping("/bandas/")
 public class BandaController {
 
     @Autowired

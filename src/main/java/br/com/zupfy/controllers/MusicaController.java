@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("musicas/")
+@RequestMapping("/musicas/")
 public class MusicaController {
 
     @Autowired
@@ -33,8 +33,13 @@ public class MusicaController {
     }
 
     @GetMapping
-    public Iterable<MusicaDTO> pesquisarMusica(@RequestParam String nomeDoAlbum){
+    public Iterable<MusicaDTO> pesquisarMusica(@RequestParam(required = false) String nomeDoAlbum){
         Iterable<Musica> musicas = musicaService.pesquisarMusica(nomeDoAlbum);
         return MusicaDTO.converterIterableModelParaDTO(musicas);
+    }
+
+    @GetMapping("todas/")
+    public Iterable<Musica> pesquisarMusicas(@RequestParam(required = false) String nomeDoAlbum){
+         return musicaService.pesquisarMusica(nomeDoAlbum);
     }
 }

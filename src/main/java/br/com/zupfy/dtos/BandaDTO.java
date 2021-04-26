@@ -38,9 +38,11 @@ public class BandaDTO {
     public static BandaDTO conveterModelParaDTO(Banda banda){
         BandaDTO bandaDTO = new BandaDTO();
 
-        bandaDTO.setId(banda.getId());
-        bandaDTO.setNascimento(banda.getNascimento());
-        bandaDTO.setNome(banda.getNome());
+        if(banda != null){
+            bandaDTO.setId(banda.getId());
+            bandaDTO.setNascimento(banda.getNascimento());
+            bandaDTO.setNome(banda.getNome());
+        }
 
         return bandaDTO;
     }

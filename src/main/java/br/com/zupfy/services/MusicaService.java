@@ -52,6 +52,9 @@ public class MusicaService {
     }
 
     public Iterable<Musica> pesquisarMusica(String nomeDoAlbum){
+        if(nomeDoAlbum == null){
+            return musicaRepository.findAll();
+        }
         return musicaRepository.findAllByAlbumNome(nomeDoAlbum);
     }
 }
